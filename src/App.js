@@ -40,7 +40,14 @@ const NewCardForm = (props) =>{
     setFormData( { ...initialState, id:uniqueId() } )
     console.log(props.data)
   }
-
+ function handleDeleteCard() {
+  if(props.clickedCard)  props.setData((prevData)=>{
+    if(prevData.length === 1) {
+      return [initialState]
+    }
+    return [...prevData.filter(x=>x.id !==props.clickedCard.id)]
+  })
+ }
 
  React.useEffect(()=>{
    if(props.clickedCard) setFormData(props.clickedCard)
@@ -122,8 +129,9 @@ const NewCardForm = (props) =>{
       />
    </section>
   
-  <button className="delete_Button">Delete Card</button>
+  
     </form>
+    <button className="delete_Button" onClick={handleDeleteCard}>Delete Card</button>
        </div>
 
    </div>

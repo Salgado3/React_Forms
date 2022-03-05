@@ -22,7 +22,7 @@
   display: inline-block;
   background: white;
   margin-left: 10%;
-  margin-top: 5%;
+  margin-top: 2.5%;
   width: 40%;
   border-radius: 8px;
 }
@@ -39,11 +39,17 @@
  height: 90%;
  display:flex;
  flex-direction: column;
- justify-content: space-around;
+
 }
-/*   .form_Sections{
-  
-} */
+.publisher_Form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+}
+.form_Sections{
+ border: 1px solid gray;
+}
 
 .NewCardForm {
   display:flex;
@@ -63,6 +69,7 @@
   border-radius: 8px;
   width: 40%;
   padding: 2.5% 5%;
+  margin-left: 7%;
 }
 
 /* styles for cards */
@@ -71,6 +78,7 @@
  justify-content: flex-end;
   margin: 2.5% 0%;
   border: 2px solid black;
+  min-height:100px ;
   max-height: 150px;
   border-radius: 2% 2%;
   font-size: 14px;
