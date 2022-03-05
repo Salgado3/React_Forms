@@ -39,7 +39,11 @@ const NewCardForm = (props) =>{
     })
     console.log(props.data)
   }
- 
+
+
+ React.useEffect(()=>{
+   if(props.clickedCard) setFormData(props.clickedCard)
+ },[props.clickedCard])
  return(
  <div className = "NewCardForm">
     <nav className = "navBar">
@@ -125,16 +129,9 @@ const NewCardForm = (props) =>{
 )};
 
 const Cards = (props) =>{
-  const cardRef = React.useRef()
-  function focus() {
-    cardRef.current.focus()
-   cardRef.current.style.background = "grey"
-    console.log("handle card click is firign",cardRef.current)
-  }   
  
-  
   return(
-    <div className="NewCards" key = {props.id} ref={cardRef} onClick= {focus}> 
+    <div className="NewCards" key = {props.id} onClick={props.handleClick}> 
       <section className="card_info"> 
        <h2 className="publisher_title">{props.title}  </h2> 
        <p className="text_paragraph"> {props.text} </p>
@@ -154,7 +151,7 @@ const Cards = (props) =>{
 
   
 const App = () => {
-  const [Data, setData] = React.useState ([
+  const [data, setData] = React.useState ([
     { 
       "id": 0,
      "publisher": "CNN",
@@ -178,20 +175,21 @@ const App = () => {
     }
 
  ]);
-//  console.log("app function rendered", Data)
-//  function handleChange() {
-//   setData((prevData)=> {
-//     console.log("setData is firing")
-//  return [...prevData, prevData[prevData.length-1]]
-//   })
-//   }
+  
 
-  // }, Data)
+  const [editCard, setEditCard] = React.useState(null)
+  
+ function handleEditCard(cardData) {
+    setEditCard(cardData)
+ }
+
+
  //attempting to pass in form info to cards
-  const completedCards = Data.map(dataSet => {
+  const completedCards = data.map(dataSet => {
   return ( 
     <Cards 
-      key = {Data.indexOf(dataSet)}  
+      handleClick = {()=>handleEditCard(dataSet)}
+      key = {data.indexOf(dataSet)}  
       title = {dataSet.publisher}
       text  = {dataSet.textInput}
       media = {dataSet.media_type}
@@ -202,7 +200,7 @@ const App = () => {
 
   return( 
     <div className="App">
-        <NewCardForm data= {Data} setData= {setData}/>
+        <NewCardForm clickedCard ={editCard} setData= {setData}/>
       <div className="deck_of_cards">
          {completedCards }
       </div>
