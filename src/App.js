@@ -2,19 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 //updating state on every change on form
 const uniqueId = ()=> {
-  return `id ${Math.floor(Math.random() * 100)}`
+  return `id ${Math.floor(Math.random() * 10000)}`
 }
 
 const NewCardForm = (props) =>{
+   const initialState = {
+    id: uniqueId(),
+    publisher:"", 
+    textInput: "",
+    media_Type: "",
+    date: "",
+   
+  }
    const [formData, setFormData] = React.useState(
-     {
-      id: uniqueId(),
-      publisher:"", 
-      textInput: "",
-      media_Type: "",
-      date: "",
-     
-    });
+    initialState);
     //keeping track of inputs in form
     function handleChange(event) {
         const {name,value} = event.target
@@ -31,12 +32,12 @@ const NewCardForm = (props) =>{
  //fires on button submit. need to conect to card comp
   function handleSubmit(event) {
     event.preventDefault()
+
     props.setData((prevData)=> {
       console.log("setData is firing")
-      if(formData.media_Type ==="Image") prevData.media_Type = "https://s.yimg.com/os/creatr-uploaded-images/2022-03/02bb35f0-99d5-11ec-bfff-46b1df77f3a4"
-      if(formData.media_Type ==="Video") prevData.media_Type = "https://s.yimg.com/os/creatr-uploaded-images/2022-03/02bbab20-99d5-11ec-bbef-9427ff56467b"
    return [...prevData, formData]
     })
+    setFormData( { ...initialState, id:uniqueId() } )
     console.log(props.data)
   }
 
@@ -189,7 +190,7 @@ const App = () => {
   return ( 
     <Cards 
       handleClick = {()=>handleEditCard(dataSet)}
-      key = {data.indexOf(dataSet)}  
+      key = {dataSet.id}  
       title = {dataSet.publisher}
       text  = {dataSet.textInput}
       media = {dataSet.media_type}
