@@ -1,21 +1,20 @@
-*{
+* {
   margin: 0%;
   padding: 0%;
   box-sizing: border-box;
 }
 .App {
   margin-top: 1%;
-  display:flex;
-  justify-content:space-evenly;
+  display: flex;
+  justify-content: space-evenly;
   color: #7e1fff;
 }
 
-.navBar{
- 
+.navBar {
   background: #7e1fff;
   height: 10%;
   width: 40vw;
- border-radius: 5% 5% 0% 0%;
+  border-radius: 5% 5% 0% 0%;
 }
 
 .newCardH1_container {
@@ -35,11 +34,10 @@
   padding: 5% 10%;
 }
 
-.main_container{
- height: 90%;
- display:flex;
- flex-direction: column;
-
+.main_container {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
 }
 .publisher_Form {
   display: flex;
@@ -47,22 +45,22 @@
   justify-content: space-evenly;
   height: 100%;
 }
-.form_Sections{
- border: 1px solid gray;
+.form_Sections {
+  border: 1px solid gray;
 }
 
 .NewCardForm {
-  display:flex;
+  display: flex;
   flex-direction: column;
- height: 90vh;
- width: 40vw;
- color: #7e1fff;
- border: .75px solid gray;
- border-radius: 2% 2%;
+  height: 90vh;
+  width: 40vw;
+  color: #7e1fff;
+  border: 0.75px solid gray;
+  border-radius: 2% 2%;
   box-shadow: 5px 2.5px 5px grey;
 }
 
-.delete_Button{
+.delete_Button {
   display: inline-block;
   border: 1px solid black;
   color: #7e1fff;
@@ -74,11 +72,11 @@
 
 /* styles for cards */
 .NewCards {
- display: flex;
- justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
   margin: 2.5% 0%;
   border: 2px solid black;
-  min-height:100px ;
+  min-height: 100px;
   max-height: 150px;
   border-radius: 2% 2%;
   font-size: 14px;
@@ -86,20 +84,16 @@
   color: black;
 }
 .NewCards:hover {
-
   border: 2.5px solid blue;
-  
 }
-.deck_of_cards{
-   width: 40vw;
-   display: flex;
+.deck_of_cards {
+  width: 40vw;
+  display: flex;
   flex-direction: column;
   justify-content: center;
-  
 }
 
-.media_display{
- 
+.media_display {
   width: 30%;
   border: 1px solid red;
 }

@@ -164,15 +164,9 @@ const Cards = (props) => {
         <span className="time_published">{props.date}</span>
       </section>
       <section className="media_display">
-        <img
-          src={
-            props.media == "Image"
-              ? imgUrl
-              : props.media == "Video"
-              ? videoUrl
-              : props.media
-          }
-        />
+        {props.media && (
+          <img src={props.media == `Image` ? imgUrl : videoUrl} />
+        )}
       </section>
     </div>
   );
