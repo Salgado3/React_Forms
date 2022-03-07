@@ -45,22 +45,29 @@ const NewCardForm = (props) => {
     if (props.clickedCard)
       props.setData((prevData) => {
         if (prevData.length === 1) {
-          return [{ initialState }];
+          setFormData({ ...initialState, id: uniqueId() });
+          return [{ initialState, id: uniqueId() }];
         }
+        setFormData({ ...initialState, id: uniqueId() });
         return [...prevData.filter((x) => x.id !== props.clickedCard.id)];
       });
   }
 
   React.useEffect(() => {
-    if (props.clickedCard) setFormData(props.clickedCard);
+    if (props.clickedCard) {
+      setFormData(props.clickedCard);
+    }
   }, [props.clickedCard]);
+
   return (
     <div className="NewCardForm">
       <nav className="navBar">
         <section className="newCardH1_container">
           <button form="form_NewCard" className="newCard_button">
-            {" "}
             New Card
+          </button>
+          <button form="form_NewCard" className="updateCard_button">
+            Update Card
           </button>
         </section>
       </nav>
@@ -151,13 +158,22 @@ const NewCardForm = (props) => {
 };
 
 const Cards = (props) => {
+  const selectedCard = React.createRef();
+  React.useEffect(() => {
+    selectedCard.current.focus();
+  }, []);
   const imgUrl =
     "https://s.yimg.com/os/creatr-uploaded-images/2022-03/02bb35f0-99d5-11ec-bfff-46b1df77f3a4";
   const videoUrl =
     "https://s.yimg.com/os/creatr-uploaded-images/2022-03/02bbab20-99d5-11ec-bbef-9427ff56467b";
 
   return (
-    <div className="NewCards" key={props.id} onClick={props.handleClick}>
+    <div
+      className="NewCards"
+      key={props.id}
+      onClick={props.handleClick}
+      ref={selectedCard}
+    >
       <section className="card_info">
         <h2 className="publisher_title">{props.title} </h2>
         <p className="text_paragraph"> {props.text} </p>
@@ -165,7 +181,7 @@ const Cards = (props) => {
       </section>
       <section className="media_display">
         {props.media && (
-          <img src={props.media == `Image` ? imgUrl : videoUrl} />
+          <img src={props.media === `Image` ? imgUrl : videoUrl} />
         )}
       </section>
     </div>
@@ -175,7 +191,7 @@ const Cards = (props) => {
 const App = () => {
   const [data, setData] = React.useState([
     {
-      id: 0,
+      id: uniqueId(),
       publisher: "CNN",
       textInput:
         "The First stock-market `correction since October has begun,` says Morgan Stanley analyst who called 2021 tech rout",
@@ -183,7 +199,7 @@ const App = () => {
       date: "2022-05-09T18:07",
     },
     {
-      id: 1,
+      id: uniqueId(),
       publisher: "Houston Cronicle",
       textInput:
         "The case for Jaden Schwartz, his absence on the left side will be another difficult gap",
@@ -192,7 +208,7 @@ const App = () => {
       date: "2022-03-09T18:07",
     },
     {
-      id: 2,
+      id: uniqueId(),
       publisher: "Yahoo!",
       textInput:
         "Lady Gaga Pays homeage to Italy as `House of Gucci` Wraps Filming and bids adieu to Italy",
@@ -218,6 +234,9 @@ const App = () => {
         text={dataSet.textInput}
         media={dataSet.media_type}
         date={dataSet.date}
+        onClick={
+          ((e) => e.currentTarget.focus(), console.log("this is focued"))
+        }
       />
     );
   });
