@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function NewCardForm(props) {
   const uniqueId = () => {
     return `id ${Math.floor(Math.random() * 10000)}`;

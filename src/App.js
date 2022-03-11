@@ -1,6 +1,6 @@
 import React from "react";
-import NewCardForm from "/Components/Form";
-import Cards from "/Components/Cards";
+import NewCardForm from "./Components/Form";
+import Cards from "./Components/Cards";
 
 const App = () => {
   const uniqueId = () => {
